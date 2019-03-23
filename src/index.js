@@ -15,18 +15,15 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
 	console.log('new websocket connection.')
 
-	// socket.emit('countUpdated', count)
-
-	// socket.on('increment', () => {
-	// 	count++
-	// 	// socket.emit('countUpdated', count)
-	// 	io.emit('countUpdated', count)
-	// })
-
 	socket.emit('message', 'Welcome User!')
+	socket.broadcast.emit('message', 'A new user has joined')
 
 	socket.on('sendMessage', (message) => {
 		io.emit('message', message)
+	})
+
+	socket.on('disconnect', () => {
+		io.emit('message', 'A user has left')
 	})
 })
 
