@@ -6,7 +6,9 @@ Npm
 download and install npm form here https://nodejs.org/en/
 
 run it on your local machine:
+  
   terminal / cmd:
+
     cd file_directory
 
     npm install
