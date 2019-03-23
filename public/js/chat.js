@@ -4,9 +4,18 @@ const $messageForm = document.querySelector('#messageForm')
 const $messageFormInput = $messageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('button')
 const $sendLocationButton = document.querySelector('#sendLocation')
+const $messages = document.querySelector('#messages')
+
+// templates
+const messageTemplate = document.querySelector('#messageTemplate').innerHTML
 
 socket.on('message', (message) => {
 	console.log(message)
+
+	const html = Mustache.render(messageTemplate, {
+		message
+	})
+	$messages.insertAdjacentHTML('beforeend', html)
 })
 
 $messageForm.addEventListener('submit', (e) => {
@@ -47,7 +56,7 @@ $sendLocationButton.addEventListener('click', () => {
 			lng: position.coords.longitude
 		}, () => {
 			console.log('Location shared.')
-			
+
 			// re-enable send location button once location is sent
 			$sendLocationButton.removeAttribute('disabled')
 		})
