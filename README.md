@@ -18,7 +18,7 @@ run it on your local machine:
 
     npm install
     
-	 npm run dev
+	npm run dev
 
 open your browser and type in the URL:
 
